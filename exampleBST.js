@@ -9,7 +9,7 @@ BST.insert(9);
 BST.insert(2);
 BST.insert(5);
 BST.insert(7);
-BST.remove(4);
+// BST.remove(4);
 // BST.insert('E');
 // BST.insert('A');
 // BST.insert('S');
@@ -22,7 +22,7 @@ BST.remove(4);
 // BST.insert('I');
 // BST.insert('O');
 // BST.insert('N');
-console.log(BST);
+// console.log(BST);
 
 const heightOfBST = tree => {
   // If the tree is empty return 0
@@ -34,7 +34,7 @@ const heightOfBST = tree => {
   return 1 + Math.max(heightOfBST(tree.left), heightOfBST(tree.right));
 };
 
-console.log(heightOfBST(BST));
+// console.log(heightOfBST(BST));
 
 /* 
 FORWARD PHASE OF RECURSION
@@ -44,3 +44,44 @@ FORWARD PHASE OF RECURSION
                                 ||                                                ||
                         1 + max(heightOfBST(null)+heightOfBST(null))        
 */
+
+
+
+
+
+const isBST = tree => {
+  //try and catch
+  if(!tree) return false;
+
+  if(tree.hasOwnProperty('key') && tree.hasOwnProperty('parent')) {
+    return true;
+  }
+
+  //base case if only root node is there its still a bst
+  if(!tree.left && !tree.right) {
+    return true;
+  }
+
+  if(tree.right) {//checks if there is a left or right
+    // console.log('RIGHT',tree.right.key)
+    // console.log('TREE',tree.key)
+    if(tree.right.key > tree.key) {  //checks if the right greater than the parent node
+      // console.log('TREE',tree.right, tree)
+      return isBST(tree.right); 
+    } else {
+      return isBST(tree.right);
+    }
+  } else if(tree.left) {
+    if(tree.left.key < tree.key) {  //checks if the right greater than the parent node
+      // console.log('TREE',tree.right, tree)
+      return isBST(tree.left); 
+    } else {
+      return isBST(tree.left);
+    }
+  }
+
+}
+
+console.log(isBST("fasdfasf"));
+
+//
