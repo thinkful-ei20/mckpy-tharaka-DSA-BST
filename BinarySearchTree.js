@@ -21,4 +21,16 @@ class BinarySearchTree {
       } else { this.right.insert(key, value); }
     }
   }
+
+  find(key){
+    if(this.key === key){
+      return this.value;
+    } else if (key < this.key && this.left) {
+      return this.left.find(key);
+    } else if (key > this.key && this.right) {
+      return this.right.find(key);
+    } else {
+      throw new Error(`The key: ${key} cannnot be found in this tree`);
+    }
+  }
 }
