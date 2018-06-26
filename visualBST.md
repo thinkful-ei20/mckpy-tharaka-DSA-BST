@@ -34,5 +34,11 @@ a binary search tree will look as follows:
 If the ROOT gets deleted,
 the binary search tree changes like so:
 ```
-        
+          4
+        /   \
+      1       6
+       \     /  \
+        2   5     9
+                /
+               7 
 ```
