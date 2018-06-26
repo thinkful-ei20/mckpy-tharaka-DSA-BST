@@ -27,7 +27,7 @@ a binary search tree will look as follows:
         2          6
                   /  \
                  5     9
-                  \
+                      /
                     7
 ```
 
