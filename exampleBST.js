@@ -1,6 +1,7 @@
 const BinarySearchTree = require('./BinarySearchTree');
 
 const BST = new BinarySearchTree();
+// const BST2 = new BinarySearchTree();
 BST.insert(3);
 BST.insert(1);
 BST.insert(4);
@@ -23,6 +24,15 @@ BST.insert(7);
 // BST.insert('O');
 // BST.insert('N');
 // console.log(BST);
+
+// BST2.insert(7);
+// BST2.insert(3);
+// BST2.insert(9);
+// BST2.insert(5);
+// BST2.insert(4);
+// BST2.insert(2);
+// BST2.insert(6);
+// BST2.insert(1);
 
 const heightOfBST = tree => {
   // If the tree is empty return 0
@@ -47,41 +57,129 @@ FORWARD PHASE OF RECURSION
 
 
 
+//
+
+// const isBST = tree => {
+
+//   console.log('count')
+//   //try and catch
+//   if(!tree) {
+//     console.log('no Tree')
+//     return false;
+//   }
+
+//   // if(tree.hasOwnProperty('key') && tree.hasOwnProperty('parent')) {
+//   //   return true;
+//   // }
+
+//   if(tree.hasOwnProperty('key') && tree.hasOwnProperty('parent') && tree.left === null && tree.right === null) {
+//     console.log('END')
+//     return true;
+//   }
+
+//   //base case if only root node is there its still a bst
+//   // if(!tree.left && !tree.right) {
+//   //   return true;
+//   // }
+
+//   if(tree.right) {//checks if there is a right
+//     console.log('*******right side*******')
+//     // console.log('RIGHT',tree.right.key)
+//     // console.log('TREE',tree.key)
+//     if(tree.right.key > tree.key) {  //checks if the right greater than the parent node
+//       console.log('RIGHT',tree.right.key)
+//       console.log('TREE',tree.key)
+//       return isBST(tree.right); 
+//     } else {
+//       console.log('right false')
+//       return false;
+//     }
+//   } else if(tree.left) {
+//     console.log('*******left side*******')
+//     if(tree.left.key < tree.key) {  //checks if the right greater than the parent node
+//       console.log('LEFT',tree.left.key)
+//       console.log('TREE',tree.key)
+//       return isBST(tree.left); 
+//     } else {
+//       console.log('left false')
+//       return false;
+//     }
+//   }
+
+// }
+
+// console.log(isBST(BST));
 
 
-const isBST = tree => {
-  //try and catch
-  if(!tree) return false;
+const isBST2 = tree => {
 
-  if(tree.hasOwnProperty('key') && tree.hasOwnProperty('parent')) {
+  if(!tree) {
     return true;
   }
 
-  //base case if only root node is there its still a bst
-  if(!tree.left && !tree.right) {
+  if(!tree.left) {
     return true;
   }
 
-  if(tree.right) {//checks if there is a left or right
-    // console.log('RIGHT',tree.right.key)
-    // console.log('TREE',tree.key)
-    if(tree.right.key > tree.key) {  //checks if the right greater than the parent node
-      // console.log('TREE',tree.right, tree)
-      return isBST(tree.right); 
-    } else {
-      return isBST(tree.right);
-    }
-  } else if(tree.left) {
-    if(tree.left.key < tree.key) {  //checks if the right greater than the parent node
-      // console.log('TREE',tree.right, tree)
-      return isBST(tree.left); 
-    } else {
-      return isBST(tree.left);
-    }
+  if(tree.left.key > tree.key) {
+    return false;
   }
 
+  if(!tree.right) {
+    return true;
+  }
+
+  if(tree.right.key < tree.key) {
+    return  false;
+  }
+
+  if(!isBST2(tree.left) || !isBST2(tree.right)) {//returns true or false
+    return false;
+  }
+
+  return true;
+
+
+  // while(true){
+  //   if(!tree || !tree.left || !tree.right) {
+  //     truth = true;
+  //   }
+
+  //   return isBST2(tree.right) && isBST2(tree.left);
+  // }
+  // return truth;
+
+  // if(!tree) {
+  //   console.log('No tree');
+  //   return false;
+  // }
+  
+  // if(tree.right.key > tree.key || tree.left.key < tree.key) {
+  //   console.log('correct')
+    
+  //   return isBST2(tree.left)
+  // }
+
+ 
+
+  // if(tree.right && tree.left) {
+  //   console.log(tree.key)
+  //   return isBST2(tree.right), isBST2(tree.left);
+  // }
+
+    // if(tree.right) {//this if case is wrong because it will return right and exit ignoring left
+    //   console.log('RIGHT',tree.right.key);
+    //   // console.log('LEFT',tree.left.key)
+    
+    //   return isBST2(tree.right);
+    // }
+
+    // if(tree.left) {
+    //   console.log('LEFT',tree.left.key);
+    //   return isBST2(tree.left);
+    // }
+  
 }
 
-console.log(isBST("fasdfasf"));
+console.log(isBST2({key: 3, left: {key: 5, left: null, right: null}, right: {key: 4, left: null, right: null}}));
 
-//
